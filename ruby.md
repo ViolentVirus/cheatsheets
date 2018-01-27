@@ -12,7 +12,7 @@ my_array = Array.new # or []    # Empty array
 my_array << "first!"            # append to array
 ```
 
-### Methode
+### Methods
 ```ruby
 Array.count(ele)
 Array.find_all { |ele| # boolean expression }
