@@ -99,6 +99,40 @@ my_lamb = { puts "baaahh" }
 my_lamb.call
 ```
 
+## Blocks
+`yield(ele)` calls the provided block giving the arguments to it.
+```ruby
+def demonstrate_block(number)
+  yield(number)
+end
+
+puts demonstrate_block(1) { |number| number + 1 }       # => 2
+```
+```ruby
+return yield(n) if block_given?          # methods know if they were give an block
+return n
+```
+
+### Implicit/Explicit Conversion
+```ruby
+def calculation(a, b, &block) # &block is an explicit (named) parameter
+ block.call(a, b)
+end
+
+puts calculation(5, 5) { |a, b| a + b }
+```
+```ruby
+def calculation(a, b)
+  yield(a, b) # yield calls an implicit (unnamed) block 
+end
+
+addition = lambda {|x, y| x + y}
+puts calculation(5, 5, &addition)
+```
+1. The block should be the last parameter passed to a method.
+2. Placing an ampersand (`&`) before the name of the last variable triggers the conversion.
+
+
 ## Other stuff
 ```ruby
 rand(n)         # Integers 0 ... (excluding) n
